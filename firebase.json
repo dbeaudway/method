@@ -3,6 +3,14 @@
     "public": "dist/public",
     "rewrites": [
       {
+        "source": "/healthcheck",
+        "function": "healthcheck"
+      },
+      {
+        "source": "/publish",
+        "function": "publish"
+      },
+      {
         "source": "**/**",
         "function": "next"
       }

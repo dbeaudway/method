@@ -1,14 +1,33 @@
 .method-Nav {
+    border-bottom: 1px solid rgba(0,0,0, .1);
+
+    svg {
+        width: 3rem;
+        height: 3rem;
+
+        .a { fill: rgb(122, 129, 255); fill-opacity: 0.44; }
+        .b { fill: rgb(214, 214, 214); fill-opacity: 0.48; }
+        .c { fill: rgb(255, 147, 0); fill-opacity: 0.57; }
+        .d { fill: rgb(1, 25, 147); fill-opacity: 0.68; }
+        .e { fill: rgb(83, 27, 147); fill-opacity: 0.22; }
+        .f { fill: rgb(0, 0, 0); fill-opacity: 0.35; }
+    }
 
     ul {
         display: flex;
         align-items: center;
-        text-decoration-style: none;
         list-style: none;
         padding: 0;
+        margin: 0;
+        
+        li {
+            a {
+                text-decoration: none;
+            }
+        }
     }
 
     &-link {
-        padding: 1rem 2rem;
+        padding: 0.5rem 1rem;
     }
 }

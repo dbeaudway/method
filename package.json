@@ -19,13 +19,18 @@
     "install-deps": "cd \"dist/functions\" && npm i"
   },
   "dependencies": {
+    "@google-cloud/pubsub": "^0.28.1",
     "@zeit/next-less": "^1.0.1",
+    "cors": "^2.8.5",
+    "firebase": "^5.9.3",
     "firebase-admin": "^6.3.0",
     "firebase-functions": "^2.1.0",
     "less": "^3.9.0",
     "next": "^7.0.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "safe-buffer": "^5.1.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",

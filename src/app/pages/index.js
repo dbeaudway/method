@@ -1,5 +1,8 @@
-import * as React from 'react'
+import * as React from 'react';
+import QuoteGenerator from '../components/QuoteGenerator';
 
 export default () => (
-  <div>Index page</div>
+  <div>
+    <QuoteGenerator />
+  </div>
 )
