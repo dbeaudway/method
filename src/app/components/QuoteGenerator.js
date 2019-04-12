@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { quoteArray } from '../../../quotes';
 import Link from 'next/link'
+import uuid from 'uuid/v4';
 import '../styles/QuoteGenerator.less';
 
-function QuoteGenerator() {
+function QuoteGenerator({ firestore }) {
     const [quote, setQuote] = useState('')
     const [quoteInput, setQuoteInput] = useState('')
     const [isValid, setIsValid] = useState(false)
@@ -48,30 +49,43 @@ function QuoteGenerator() {
     }
 
     const submitResults = async () => {
-        console.log('Submitting results', submissions);
+        // Firestore submission
+        const batch = firestore.batch();
+        const colRef = firestore.collection('submissions')
 
-        const data = JSON.stringify({
-            topic: 'typing-submissions',
-            message: submissions
+        submissions.forEach(({quote, time, session}) => {
+            batch.set(colRef.doc(), {
+                quote,
+                time,
+                session
+            })
         })
 
-        try {
-            const response = await fetch('/publish', {
-                method: 'POST',
-                body: data
-            })
+        return batch.commit();
 
-            if (response.ok) {
-                const result = await response.json();
-                console.log('Result:', result);
-                return result;
-            }
+        // Pubsub submission
+        // const data = JSON.stringify({
+        //     topic: 'typing-submissions',
+        //     message: submissions
+        // })
 
-            throw new Error('Encountered error')
-        }
-        catch (err) {
-            return err
-        }
+        // try {
+        //     const response = await fetch('/publish', {
+        //         method: 'POST',
+        //         body: data
+        //     })
+
+        //     if (response.ok) {
+        //         const result = await response.json();
+        //         console.log('Result:', result);
+        //         return result;
+        //     }
+
+        //     throw new Error('Encountered error')
+        // }
+        // catch (err) {
+        //     return err
+        // }
     }
 
     const handleChange = e => {

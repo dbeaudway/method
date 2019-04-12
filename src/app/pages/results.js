@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import FirebaseContext from '../components/Context';
+import List from '../components/List';
 
 export default function Results() {
 
@@ -7,7 +9,12 @@ export default function Results() {
   })
 
   return (
-    <div>Test</div>
+    <FirebaseContext.Consumer>
+      { firestore => (
+          <List firestore={ firestore } />
+        )
+      }
+    </FirebaseContext.Consumer>
   )
 }
 

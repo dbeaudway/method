@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import App, { Container } from 'next/app';
 import Layout from '../components/Layout';
 import uuid from 'uuid/v4';
+import firestore from '../../firebase';
+import FirebaseContext from '../components/Context';
 
 export default class MyApp extends App {
 
@@ -17,9 +19,11 @@ export default class MyApp extends App {
     const { Component, pageProps } = this.props
     return (
       <Container>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <FirebaseContext.Provider value={firestore}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </FirebaseContext.Provider>
       </Container>
     )
   }
